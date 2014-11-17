@@ -1,0 +1,18 @@
+# ignore everything
+.*
+
+<<<<<<< HEAD
+*/bin
+*/out
+=======
+/bin
+/out
+>>>>>>> 89ac2ad266f5821cdb3e84d821e984765a2d50af
+*.iml
+*.ipr
+*.iws
+
+# don't ignore gitignore
+!.gitignore
+
+
