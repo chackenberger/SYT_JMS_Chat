@@ -6,6 +6,7 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSException;
+import javax.jms.Session;
 
 public class Controller {
 
@@ -20,7 +21,8 @@ public class Controller {
 	public void start(String chatroom, String interf) {
 
 		Connection connection;
-
+		Session session;
+		
 		try {
 
 			ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(user, password, url);
@@ -29,12 +31,18 @@ public class Controller {
 
 
 			connection.start();
+			
+			session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 		} catch(JMSException ex) {
 
 			throw new RuntimeException(ex);
 		}
 
-		this.sender = new Sender(connection, chatroom);
-		this.receiver = new Receiver(connection, chatroom, interf);
+		try {
+			this.sender = new Sender(session, chatroom);
+		}catch (JMSException ex) {
+			//TODO: Do something
+		}
+		this.receiver = new Receiver(session, chatroom, interf);
 	}
 }

@@ -10,7 +10,7 @@ public class Receiver implements Runnable {
 
 	private Session session;
 
-	public Receiver(Connection connection, String chatroom, String interf) {
+	public Receiver(Session session, String chatroom, String interf) {
 
 		this.session = session;
 		this.chatroom = chatroom;
