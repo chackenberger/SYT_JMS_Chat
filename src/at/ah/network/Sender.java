@@ -7,8 +7,9 @@ import javax.jms.MessageProducer;
 import javax.jms.Session;
 
 /**
- * Sender class from which Messages can be send to a specified chatroom or as private messages
- * @author Christoph Hackeneberger
+ * Sender class from which Messages can be send to a specified chat room or as private messages
+ *
+ * @author Christoph Hackenberger
  * @version 1.0
  */
 public class Sender {
@@ -17,9 +18,10 @@ public class Sender {
 	private MessageProducer producer;
 
 	/**
-	 * Creates a new Sender object with the specified session for the specified chatroom
+	 * Creates a new Sender object with the specified session for the specified chat room.
+	 *
 	 * @param session the session for the connection
-	 * @param chatroom the chatroom in which this sender should send
+	 * @param chatroom the chat room in which this sender should send
 	 * @throws JMSException when there is an internal error in the underlying middleware
 	 */
 	public Sender(Session session, String chatroom) throws JMSException {
@@ -29,7 +31,8 @@ public class Sender {
 	}
 	
 	/**
-	 * Sends a message to the chatroom
+	 * Sends a message to the chat room
+	 *
 	 * @param message the message which should be send
 	 * @throws JMSException when there is an internal error in the underlying middleware
 	 */
@@ -39,7 +42,8 @@ public class Sender {
 	
 	/**
 	 * Sends a private message to the user with the specified ip address
-	 * @param address the host/ip adress of the user
+	 * 
+	 * @param address the host/ip address of the user
 	 * @param message the message which should be send
 	 * @throws JMSException when there is an internal error in the underlying middleware
 	 */
