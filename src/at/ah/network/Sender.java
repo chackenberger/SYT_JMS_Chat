@@ -25,8 +25,8 @@ public class Sender {
 	 * @throws JMSException when there is an internal error in the underlying middleware
 	 */
 	public Sender(Session session, String chatroom) throws JMSException {
+
 		this.session = session;
-		
 		this.producer = session.createProducer(session.createTopic(chatroom));
 	}
 	
@@ -37,12 +37,13 @@ public class Sender {
 	 * @throws JMSException when there is an internal error in the underlying middleware
 	 */
 	public void sendMessage(String message) throws JMSException {
+
 		producer.send(session.createTextMessage(message));
 	}
 	
 	/**
 	 * Sends a private message to the user with the specified ip address
-	 * 
+	 *
 	 * @param address the host/ip address of the user
 	 * @param message the message which should be send
 	 * @throws JMSException when there is an internal error in the underlying middleware
