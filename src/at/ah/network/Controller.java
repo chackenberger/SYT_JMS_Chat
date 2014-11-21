@@ -8,41 +8,45 @@ import javax.jms.ConnectionFactory;
 import javax.jms.JMSException;
 import javax.jms.Session;
 
+/**
+ * Controller for Sender and Receiver.
+ *
+ * @version 1.0
+ * @author Klaus Ableitinger, Christoph Hackenberger
+ */
 public class Controller {
 
-	private static final String user = ActiveMQConnection.DEFAULT_USER;
 	private static final String password = ActiveMQConnection.DEFAULT_PASSWORD;
-	private static final String url = ActiveMQConnection.DEFAULT_BROKER_URL;
 
 
 	private Sender sender;
 	private Receiver receiver;
 
-	public void start(String chatroom, String interf) {
+	public void start(String ip, String chatroom, String username) throws JMSException {
+
+		System.out.println(ActiveMQConnection.DEFAULT_BROKER_URL);
 
 		Connection connection;
 		Session session;
 		
-		try {
+		ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(username, password, "tcp://" + ip + ":61616"); // 61616
+		connection = connectionFactory.createConnection();
+		connection.start();
 
-			ConnectionFactory connectionFactory = new ActiveMQConnectionFactory(user, password, url);
-			connection = connectionFactory.createConnection();
-			connection.start();
+		session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
+		this.sender = new Sender(session, chatroom, username);
+		this.receiver = new Receiver(session, chatroom);
+		new Thread(receiver).start();
+	}
 
-			connection.start();
-			
-			session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-		} catch(JMSException ex) {
+	public Receiver getReceiver() {
 
-			throw new RuntimeException(ex);
-		}
+		return receiver;
+	}
 
-		try {
-			this.sender = new Sender(session, chatroom);
-		}catch (JMSException ex) {
-			//TODO: Do something
-		}
-		this.receiver = new Receiver(session, chatroom, interf);
+	public Sender getSender() {
+
+		return sender;
 	}
 }
