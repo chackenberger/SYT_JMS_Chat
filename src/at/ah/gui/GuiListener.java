@@ -11,11 +11,17 @@ import java.awt.event.KeyListener;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * GUI Listener Class.
+ *
+ * @version 1.0
+ * @author Klaus Ableitinger
+ */
 public class GuiListener implements ActionListener, KeyListener, MessageListener {
 
 	MainFrame frame;
 
-	public GuiListener(MainFrame frame) {
+	GuiListener(MainFrame frame) {
 
 		this.frame = frame;
 	}

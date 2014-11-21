@@ -22,6 +22,14 @@ public class Controller {
 	private Sender sender;
 	private Receiver receiver;
 
+	/**
+	 * Starts the chat client.
+	 *
+	 * @param ip        the message broker ip to connect to
+	 * @param chatroom  the chat room to connect to
+	 * @param username  the username to connect with
+	 * @throws JMSException when something goes wrong during connection
+	 */
 	public void start(String ip, String chatroom, String username) throws JMSException {
 
 		System.out.println(ActiveMQConnection.DEFAULT_BROKER_URL);
@@ -40,11 +48,21 @@ public class Controller {
 		new Thread(receiver).start();
 	}
 
+	/**
+	 * Returns the Receiver.
+	 *
+	 * @return the Receiver
+	 */
 	public Receiver getReceiver() {
 
 		return receiver;
 	}
 
+	/**
+	 * Returns the Sender
+	 *
+	 * @return the Sender
+	 */
 	public Sender getSender() {
 
 		return sender;

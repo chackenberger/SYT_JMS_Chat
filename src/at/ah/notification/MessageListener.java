@@ -6,7 +6,7 @@ import javax.jms.TextMessage;
  * Message Listener Interface.
  *
  * @version 1.0
- * @author Klaus Ableitinger
+ * @author Klaus Ableitinger, Christoph Hackenberger
  */
 public interface MessageListener {
 
