@@ -39,6 +39,7 @@ public class MainFrame extends JFrame {
 
 		chatArea = new JTextArea("Welcome to SYT VSDB-Chat\n");
 		chatArea.setEditable(false);
+		JScrollPane spane = new JScrollPane(chatArea);
 
 		inputField = new JTextField(30);
 		inputField.addKeyListener(listener);
@@ -47,7 +48,7 @@ public class MainFrame extends JFrame {
 		sendButton.addActionListener(listener);
 		sendButton.addKeyListener(listener);
 
-		mainPanel.add(chatArea);
+		mainPanel.add(spane);
 		mainPanel.add(southPanel, BorderLayout.SOUTH);
 
 		southPanel.add(inputField);
