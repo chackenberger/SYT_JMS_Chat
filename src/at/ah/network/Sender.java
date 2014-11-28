@@ -73,5 +73,6 @@ public class Sender {
 		txtMessage.setStringProperty("username", username);
 		txtMessage.setStringProperty("ip", localhost);
 		sender.send(txtMessage);
+		sender.close();
 	}
 }

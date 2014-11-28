@@ -105,6 +105,7 @@ public class Receiver implements Runnable {
 			if(message != null) messages.add(message);
 		} while(message != null);
 
+		consumer.close();
 		return messages;
 	}
 
